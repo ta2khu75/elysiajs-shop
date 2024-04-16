@@ -12,6 +12,7 @@
     "@elysiajs/jwt": "^1.0.2",
     "@elysiajs/swagger": "^1.0.3",
     "@prisma/client": "^5.11.0",
+    "@types/uuid": "^9.0.8",
     "elysia": "latest",
     "uuid": "^9.0.1"
   },

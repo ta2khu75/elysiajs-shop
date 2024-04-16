@@ -119,7 +119,7 @@ model Order {
   address      Address        @relation(fields: [addressId], references: [id])
   addressId    Int
   note         String
-  status       OrderStatus    @default(PENDING)
+  status       Status    @default(PENDING)
   orderDetails OrderDetails[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
@@ -127,7 +127,7 @@ model Order {
   @@map("orders")
 }
 
-enum OrderStatus {
+enum Status {
   PENDING
   PROCESSING
   SHIPPED
@@ -149,6 +149,7 @@ model OrderDetails {
 model Category {
   id       Int       @id @default(autoincrement())
   name     String
+  image    String
   products Product[]
 
   @@map("categories")
