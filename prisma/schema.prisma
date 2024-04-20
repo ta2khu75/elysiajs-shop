@@ -48,17 +48,18 @@ model Address {
 }
 
 model Product {
-  id            Int            @id @default(autoincrement())
-  category      Category       @relation(fields: [categoryId], references: [id])
-  categoryId    Int
-  user          User           @relation(fields: [userId], references: [id])
-  userId        Int
-  name          String
-  thumbnail     String
-  active        Boolean        @default(true)
-  options       Option[]
-  sizes         Size[]
-  productImages ProductImage[]
+  id             Int              @id @default(autoincrement())
+  category       Category         @relation(fields: [categoryId], references: [id])
+  categoryId     Int
+  user           User             @relation(fields: [userId], references: [id])
+  userId         Int
+  name           String
+  thumbnail      String
+  active         Boolean          @default(true)
+  productDetails ProductDetails[]
+  options        Option[]
+  sizes          Size[]
+  productImages  ProductImage[]
 
   @@map("products")
 }
@@ -78,6 +79,8 @@ model ProductDetails {
   optionId        Int?
   size            Size?          @relation(fields: [sizeId], references: [id])
   sizeId          Int?
+  product         Product        @relation(fields: [productId], references: [id])
+  productId       Int
   price           Decimal
   numberOfProduct Warehouse?
   orderDetails    OrderDetails[]
@@ -119,7 +122,7 @@ model Order {
   address      Address        @relation(fields: [addressId], references: [id])
   addressId    Int
   note         String
-  status       Status    @default(PENDING)
+  status       Status         @default(PENDING)
   orderDetails OrderDetails[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt

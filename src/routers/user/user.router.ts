@@ -9,9 +9,10 @@ const userRouter = new Elysia()
     async ({ jwt, body: { email, password }}) => {
       const user = await db.user.findFirst({ where: { email } });
       if (user?.password === password) {
+        const token=await jwt.sign({ email, roleId:user.roleId});
         return {
           message:"Login successfully",
-          jwt:jwt.sign({email:user.email, role:user.roleId})
+          token
         }
       }
       throw new BadRequestError("email or password incorrect");

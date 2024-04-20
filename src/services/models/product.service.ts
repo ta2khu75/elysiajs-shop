@@ -45,12 +45,15 @@ export abstract class ProductService {
     return product;
   }
   static async find(id: number): Promise<Product | null> {
-    return await db.product.findFirst({ where: { id } });
+    return await db.product.findFirst({
+      where: { id },
+      include: { category: true },
+    });
   }
   static async delete(id: number): Promise<Product> {
     return await db.product.delete({ where: { id } });
   }
   static async select(): Promise<Product[]> {
-    return await db.product.findMany({include: {category:true}});
+    return await db.product.findMany({ include: { category: true }});
   }
 }

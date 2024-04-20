@@ -1,6 +1,6 @@
 import { Elysia, t } from "elysia";
 import swagger from "@elysiajs/swagger";
-import user from "./routers/models/user";
+import user from "./routers/user/user.router"
 import { cors } from "@elysiajs/cors";
 import { jwt } from "@elysiajs/jwt";
 import idDto from "./dtos/id.dto";
